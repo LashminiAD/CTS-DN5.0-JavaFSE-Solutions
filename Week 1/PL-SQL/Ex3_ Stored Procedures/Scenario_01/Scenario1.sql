@@ -1,0 +1,3 @@
+-- Author: Lashmini A D
+-- CTS DN 5.0 - Week1 - PL/SQL - Exercise03 - Scenario 1
+-- ProcessMonthlyInterest - Apply 1% interest to all savings accounts
