@@ -1,8 +1,6 @@
 package com.cts.junit;
 
 import static org.junit.Assert.*;
-
-
 import org.junit.Test;
 
 public class AppTest {
