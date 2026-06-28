@@ -25,32 +25,19 @@ public class OrMappingApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(OrMappingApplication.class, args);
     }
-
-  @Override
+@Override
 public void run(String... args) throws Exception {
 
-    Skill java = new Skill();
-    java.setName("Java");
+    System.out.println("========== HQL QUERY ==========");
+    employeeService.getAllEmployeesHQL()
+            .forEach(System.out::println);
 
-    Skill spring = new Skill();
-    spring.setName("Spring Boot");
+    System.out.println();
 
-    Employee employee = new Employee();
-    employee.setName("Lashmini");
-    employee.setSalary(50000);
-    employee.setPermanent(true);
-    employee.setDateOfBirth(new java.util.Date());
-
-    java.util.Set<Skill> skills = new java.util.HashSet<>();
-    skills.add(java);
-    skills.add(spring);
-
-    employee.setSkillList(skills);
-
-    employeeService.save(employee);
-
-    System.out.println("========== MANY TO MANY ==========");
-    System.out.println(employee);
-    System.out.println(employee.getSkillList());
+    System.out.println("========== NATIVE QUERY ==========");
+    employeeService.getAllEmployeesNative()
+            .forEach(System.out::println);
 }
+
+
 }

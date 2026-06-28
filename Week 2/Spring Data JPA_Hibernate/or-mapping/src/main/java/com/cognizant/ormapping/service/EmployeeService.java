@@ -1,5 +1,7 @@
 package com.cognizant.ormapping.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,15 @@ public class EmployeeService {
 
     public Employee get(int id) {
         return employeeRepository.findById(id).orElse(null);
+    }
+
+    // HQL Query
+    public List<Employee> getAllEmployeesHQL() {
+        return employeeRepository.getAllEmployeesHQL();
+    }
+
+    // Native Query
+    public List<Employee> getAllEmployeesNative() {
+        return employeeRepository.getAllEmployeesNative();
     }
 }
