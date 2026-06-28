@@ -19,4 +19,5 @@ public class DepartmentService {
     public Department get(int id) {
         return departmentRepository.findById(id).orElse(null);
     }
+    
 }

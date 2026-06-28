@@ -1,5 +1,7 @@
 package com.cognizant.ormapping.model;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +15,9 @@ public class Skill {
 
     @Column(name = "sk_name")
     private String name;
+
+    @ManyToMany(mappedBy = "skillList")
+    private Set<Employee> employeeList;
 
     public Skill() {
     }
@@ -31,6 +36,14 @@ public class Skill {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(Set<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
     @Override

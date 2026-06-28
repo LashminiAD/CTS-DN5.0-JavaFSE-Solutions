@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.cognizant.ormapping.model.Department;
 import com.cognizant.ormapping.model.Employee;
+import com.cognizant.ormapping.model.Skill;
 import com.cognizant.ormapping.service.DepartmentService;
 import com.cognizant.ormapping.service.EmployeeService;
 
@@ -25,28 +26,31 @@ public class OrMappingApplication implements CommandLineRunner {
         SpringApplication.run(OrMappingApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
+  @Override
+public void run(String... args) throws Exception {
 
-        // Create Department
-        Department department = new Department();
-        department.setName("Information Technology");
-        department = departmentService.save(department);
+    Skill java = new Skill();
+    java.setName("Java");
 
-        // Create Employee
-        Employee employee = new Employee();
-        employee.setName("Lashmini");
-        employee.setSalary(50000);
-        employee.setPermanent(true);
-        employee.setDateOfBirth(new Date());
+    Skill spring = new Skill();
+    spring.setName("Spring Boot");
 
-        // Many-to-One Mapping
-        employee.setDepartment(department);
+    Employee employee = new Employee();
+    employee.setName("Lashmini");
+    employee.setSalary(50000);
+    employee.setPermanent(true);
+    employee.setDateOfBirth(new java.util.Date());
 
-        employee = employeeService.save(employee);
+    java.util.Set<Skill> skills = new java.util.HashSet<>();
+    skills.add(java);
+    skills.add(spring);
 
-        System.out.println("========== MANY TO ONE ==========");
-        System.out.println(employee);
-        System.out.println(employee.getDepartment());
-    }
+    employee.setSkillList(skills);
+
+    employeeService.save(employee);
+
+    System.out.println("========== MANY TO MANY ==========");
+    System.out.println(employee);
+    System.out.println(employee.getSkillList());
+}
 }
